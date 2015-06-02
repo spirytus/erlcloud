@@ -61,12 +61,13 @@ aws_request(Method, Protocol, Host, Port, Path, Params, AccessKeyID, SecretAcces
 %% aws_request2 returns {ok, Body} or {error, Reason} instead of throwing as aws_request does
 %% This is the preferred pattern for new APIs
 aws_request2(Method, Protocol, Host, Port, Path, Params, Config) ->
-    case update_config(Config) of
-        {ok, Config1} ->
-            aws_request2_no_update(Method, Protocol, Host, Port, Path, Params, Config1);
-        {error, Reason} ->
-            {error, Reason}
-    end.
+    %case update_config(Config) of
+        %{ok, Config1} ->
+            aws_request2_no_update(Method, Protocol, Host, Port, Path, Params, Config)
+        %{error, Reason} ->
+            %{error, Reason}
+    %end.
+    .
 
 aws_request2_no_update(Method, Protocol, Host, Port, Path, Params, #aws_config{} = Config) ->
     Timestamp = format_timestamp(erlang:universaltime()),
